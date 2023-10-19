@@ -4,12 +4,14 @@ Definition of urls for PPUC.
 
 from datetime import datetime
 from os import name
-from django.urls import path
+from django.urls import path, re_path, include
+from django.conf.urls import include
 from PxPUC import forms, views
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     # Many of the url patterns correspond with respective endpoint in api.js
+    re_path('^', include(PxPUC.urls)),
     path("PxPUC/", views.home, name="PxPUC"),
     path("PxPUC/test.html", views.map),
     path("PxPUC/view_sentence/<int:sid>", views.view_sentence, name="view_sentence"),
